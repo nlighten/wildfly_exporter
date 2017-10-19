@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="nl.nlighten.prometheus.wildfly">
+    <resources>
+        <resource-root path="${project.artifactId}-${project.version}.jar"/>
+        <resource-root path="simpleclient-${io.prometheus.simpleclient.version}.jar"/>
+        <resource-root path="simpleclient_hotspot-${io.prometheus.simpleclient.version}.jar"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.servlet.api"/>
+        <module name="io.undertow.servlet"/>
+        <module name="io.undertow.core"/>
+        <module name="org.wildfly.extension.undertow"/>
+        <module name="org.slf4j"/>
+        <module name="sun.jdk" export="true" >
+            <imports>
+                <include path="sun/misc/Unsafe" />
+            </imports>
+        </module>
+    </dependencies>
+
+</module>

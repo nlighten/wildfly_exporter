@@ -1,0 +1,32 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>wildfly-prometheus-module</id>
+
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/nl/nlighten/prometheus/wildfly/main</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <excludes>
+                <exclude>*sources*</exclude>
+                <exclude>*javadoc*</exclude>
+                <exclude>*tests*</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+
+    <files>
+        <file>
+            <source>src/main/assembly/module.xml</source>
+            <filtered>true</filtered>
+            <outputDirectory>/nl/nlighten/prometheus/wildfly/main</outputDirectory>
+        </file>
+    </files>
+</assembly>
