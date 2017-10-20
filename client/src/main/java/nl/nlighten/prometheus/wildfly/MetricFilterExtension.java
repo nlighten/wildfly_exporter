@@ -30,7 +30,7 @@ public class MetricFilterExtension implements ServletExtension {
             LOG.info("Adding metrics filter to  deployment for context " + deploymentInfo.getContextPath());
             FilterInfo metricsFilterInfo = new FilterInfo("metricsfilter", ServletMetricsFilter.class);
             metricsFilterInfo.setAsyncSupported(true);
-            metricsFilterInfo.addInitParam(ServletMetricsFilter.BUCKET_CONFIG_PARAM,System.getProperty("prometheus.wildfly,filter.buckets",""));
+            metricsFilterInfo.addInitParam(ServletMetricsFilter.BUCKET_CONFIG_PARAM,System.getProperty("prometheus.wildfly.filter.buckets",""));
             deploymentInfo.addFilter(metricsFilterInfo);
             deploymentInfo.addFilterUrlMapping("metricsfilter", "/*", DispatcherType.REQUEST);
         } else {

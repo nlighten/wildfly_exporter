@@ -48,7 +48,7 @@ public class ServletMetricsFilter implements Filter {
                 String[] bucketParams = filterConfig.getInitParameter(BUCKET_CONFIG_PARAM).split(",");
                 double[] buckets = new double[bucketParams.length];
                 for (int i = 0; i < bucketParams.length; i++) {
-                    buckets[i] = Double.parseDouble(bucketParams[i]);
+                    buckets[i] = Double.parseDouble(bucketParams[i].trim());
                 }
                 servletLatencyBuilder.buckets(buckets);
             } else {
