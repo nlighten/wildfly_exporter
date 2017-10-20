@@ -5,7 +5,7 @@
     <parent>
         <groupId>nl.nlighten</groupId>
         <artifactId>wildfly_exporter</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>wildfly_exporter_client</artifactId>
