@@ -47,7 +47,7 @@
             <version>0.0.2-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-            <dependency>
+        <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>3.0.1</version>

@@ -9,7 +9,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>${project.build.directory}</directory>
+            <directory>${project.build.directory}/assembly</directory>
             <outputDirectory>/nl/nlighten/prometheus/wildfly/main</outputDirectory>
             <includes>
                 <include>*.jar</include>

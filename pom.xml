@@ -44,6 +44,7 @@
 
     <modules>
         <module>client</module>
+        <module>module</module>
         <module>exporter</module>
         <module>testservlet</module>
         <module>integration</module>
