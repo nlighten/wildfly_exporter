@@ -74,7 +74,7 @@ To enable undertow related metrics add ``statistics-enabled="true"`` to Wildfly'
 or using the Jboss cli:
 
 ```
-subsystem=undertow:write-attribute(name=statistics-enabled, value=true)
+/subsystem=undertow:write-attribute(name=statistics-enabled, value=true)
 
 ```
 
