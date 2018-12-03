@@ -38,7 +38,7 @@ public class InfinispanExports extends Collector {
         List<MetricFamilySamples> mfs = new ArrayList<>();
         try {
             final MBeanServer server = ManagementFactory.getPlatformMBeanServer();
-            final ObjectName filterName = new ObjectName("jboss.infinispan:component=Statistics,name=*,manager=*,type=Cache");
+            final ObjectName filterName = new ObjectName("org.wildfly.clustering.infinispan:component=Statistics,name=*,manager=*,type=Cache");
             Set<ObjectInstance> mBeans = server.queryMBeans(filterName, null);
             if (mBeans.size() > 0) {
 

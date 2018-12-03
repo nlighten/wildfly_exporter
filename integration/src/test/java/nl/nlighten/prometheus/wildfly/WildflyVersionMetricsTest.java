@@ -14,6 +14,6 @@ public class WildflyVersionMetricsTest extends AbstractIntegrationTest {
 
     @Test
     public void testWildflyVersionMetric() {
-        assertThat(metrics.get("wildfly_info{name=\"WildFly Full\",version=\"10.1.0.Final\",}"), is(1.0));
+        assertThat(metrics.get("wildfly_info{name=\"WildFly Full\",version=\"14.0.1.Final\",}"), is(1.0));
     }
 }
