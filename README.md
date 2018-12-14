@@ -24,7 +24,7 @@ To use this library you need to perform the following steps:
 Details are available in the paragraphs below.   
 
 ### Add exporter module jars to Wildfly
-Download the latest [wildfly_exporter_module](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wildfly_module_client%22) from the maven repository and extract it in Wildfly's modules directory.
+Download the latest [wildfly_exporter_module](https://search.maven.org/search?q=a:wildfly_exporter_module) from the maven repository and extract it in Wildfly's modules directory.
 E.g. for version 0.0.2:
 
 ```
