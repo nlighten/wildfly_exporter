@@ -1,5 +1,5 @@
 # Prometheus Wildlfy Exporter
-A set of collectors that can be used to monitor Jboss Wildfly instances. This library has been tested with Wildfly 10.1.0.
+A set of collectors that can be used to monitor Jboss Wildfly instances. This library has been tested with Wildfly 14.0.1.
 
 
 ### Available metrics
@@ -24,15 +24,14 @@ To use this library you need to perform the following steps:
 Details are available in the paragraphs below.   
 
 ### Add exporter module jars to Wildfly
-Download the latest [wildfly_exporter_module](https://search.maven.org/search?q=a:wildfly_exporter_module) from the maven repository and extract it in Wildfly's modules directory.
-E.g. for version 0.0.2:
-
+Download the latest [wildfly_exporter_module](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wildfly_module_client%22) from the maven repository and extract it in Wildfly's modules directory.
+E.g. for version 0.0.4:
 ```
-cp wildfly_exporter_module-0.0.2.jar /opt/jboss/wildfly/modules/.
+cp wildfly_exporter_module-0.0.4.jar /opt/jboss/wildfly/modules/.
 cd /opt/jboss/wildfly/modules 
-jar -xvf wildfly_exporter_module-0.0.2.jar 
+jar -xvf wildfly_exporter_module-0.0.4.jar 
 rm -rf META-INF 
-rm -f wildfly_exporter_module-0.0.2.jar
+rm -f wildfly_exporter_module-0.0.4.jar
 
 ```
 
@@ -55,10 +54,10 @@ or using the Jboss cli:
 
 ### Deploy exporter servlet
 Download the latest [wildfly exporter servlet](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wildfly_exporter_servlet%22) from the maven repository and copy it to Wildfly's deployments directory and rename it to ``metrics.war``.
-E.g. for version 0.0.1-SNAPSHOT:
+E.g. for version 0.0.4:
 
 ```
-cp wildfly_exporter_servlet-0.0.1-SNAPSHOT.war /opt/jboss/wildfly/standalone/deployments/metrics.war
+cp wildfly_exporter_servlet-0.0.4.war /opt/jboss/wildfly/standalone/deployments/metrics.war
 ```
 
 ### Enable metrics for Wildfly components
@@ -69,7 +68,7 @@ Most Wildfly components require explicit configuration before they expose metric
 To enable undertow related metrics add ``statistics-enabled="true"`` to Wildfly's configuration section for the undertow subsystem: 
 
 ```xml
-<subsystem xmlns="urn:jboss:domain:undertow:3.1" statistics-enabled="true">
+<subsystem xmlns="urn:jboss:domain:undertow:7.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="true">
 ``` 
 or using the Jboss cli:
 
@@ -99,15 +98,13 @@ To enable infinispan related metrics add ``statistics-enabled="true"`` to the In
 ````xml
 <cache-container name="myCacheContainer" default-cache="myLocalCache">
   <transport lock-timeout="60000"/>
-   <local-cache name="myLocalCache" statistics-enabled="true" jndi-name="java:jboss/infinispan/myLocalCache">
-      <eviction strategy="LRU" max-entries="10000"/>
+   <local-cache name="myLocalCache" statistics-enabled="true">
       <expiration lifespan="604800"/>
       <file-store path="myLocalCacheStore" passivation="false" preload="true" shared="false"/>
    </local-cache>
-   <replicated-cache name="myReplicatedCache" statistics-enabled="true" jndi-name="java:jboss/infinispan/myReplicatedCache" mode="SYNC">
+   <replicated-cache name="myReplicatedCache" statistics-enabled="true">
       <transaction mode="NON_XA"/>
       <locking isolation="REPEATABLE_READ"/>
-      <eviction strategy="LRU" max-entries="10000"/>
       <expiration lifespan="604800"/>
       <file-store path="myReplicatedCacheStore" passivation="false" preload="true" shared="false"/>
    </replicated-cache>

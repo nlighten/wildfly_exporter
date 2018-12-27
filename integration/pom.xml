@@ -5,7 +5,7 @@
     <parent>
         <groupId>nl.nlighten</groupId>
         <artifactId>wildfly_exporter</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.5-SNAPSHOT</version>
     </parent>
 
     <artifactId>wildfly_exporter_test</artifactId>
@@ -116,6 +116,7 @@
                                         <method>GET</method>
                                         <status>200</status>
                                     </http-->
+                                    <time>20000</time>
                                 </wait>
                                 <log>
                                     <prefix>wildfly</prefix>
