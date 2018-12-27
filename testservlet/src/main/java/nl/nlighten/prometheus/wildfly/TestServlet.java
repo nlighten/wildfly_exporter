@@ -25,10 +25,10 @@ public class TestServlet extends HttpServlet {
     @Resource(lookup = "java:jboss/datasources/ExampleDS")
     private DataSource dataSource;
 
-    @Resource(lookup = "java:jboss/infinispan/myLocalCache")
+    @Resource(lookup = "java:jboss/infinispan/cache/myCacheContainer/myLocalCache")
     private Cache<String,String> myLocalCache;
 
-    @Resource(lookup = "java:jboss/infinispan/myReplicatedCache")
+    @Resource(lookup = "java:jboss/infinispan/cache/myCacheContainer/myReplicatedCache")
     private Cache<String,String> myCache;
 
 
