@@ -25,14 +25,13 @@ Details are available in the paragraphs below.
 
 ### Add exporter module jars to Wildfly
 Download the latest [wildfly_exporter_module](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wildfly_module_client%22) from the maven repository and extract it in Wildfly's modules directory.
-E.g. for version 0.0.3:
-
+E.g. for version 0.0.4:
 ```
-cp wildfly_exporter_module-0.0.3.jar /opt/jboss/wildfly/modules/.
+cp wildfly_exporter_module-0.0.4.jar /opt/jboss/wildfly/modules/.
 cd /opt/jboss/wildfly/modules 
-jar -xvf wildfly_exporter_module-0.0.3.jar 
+jar -xvf wildfly_exporter_module-0.0.4.jar 
 rm -rf META-INF 
-rm -f wildfly_exporter_module-0.0.3.jar
+rm -f wildfly_exporter_module-0.0.4.jar
 
 ```
 
@@ -55,10 +54,10 @@ or using the Jboss cli:
 
 ### Deploy exporter servlet
 Download the latest [wildfly exporter servlet](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wildfly_exporter_servlet%22) from the maven repository and copy it to Wildfly's deployments directory and rename it to ``metrics.war``.
-E.g. for version 0.0.3:
+E.g. for version 0.0.4:
 
 ```
-cp wildfly_exporter_servlet-0.0.3.war /opt/jboss/wildfly/standalone/deployments/metrics.war
+cp wildfly_exporter_servlet-0.0.4.war /opt/jboss/wildfly/standalone/deployments/metrics.war
 ```
 
 ### Enable metrics for Wildfly components
