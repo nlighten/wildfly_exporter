@@ -5,7 +5,7 @@
 
     <groupId>nl.nlighten</groupId>
     <artifactId>wildfly_exporter</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.5</version>
 
     <name>Prometheus Wildfly Exporter</name>
     <url>https://github.com/nlighten/wildfly_exporter</url>
@@ -25,7 +25,7 @@
         <connection>scm:git:git@github.com:nlighten/wildfly_exporter.git</connection>
         <developerConnection>scm:git:git@github.com:nlighten/wildfly_exporter.git</developerConnection>
         <url>git@github.com:nlighten/wildfly_exporter.git</url>
-        <tag>wildfly_exporter-0.0.3</tag>
+        <tag>wildfly_exporter-0.0.5</tag>
     </scm>
 
     <developers>
