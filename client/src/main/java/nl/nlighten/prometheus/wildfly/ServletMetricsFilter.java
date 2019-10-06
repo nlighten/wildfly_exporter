@@ -38,39 +38,41 @@ public class ServletMetricsFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        if (servletLatency == null) {
-            Histogram.Builder servletLatencyBuilder = Histogram.build()
-                    .name("servlet_request_seconds")
-                    .help("The time taken fulfilling servlet requests")
-                    .labelNames("context", "method");
+        synchronized (this){
+            if (servletLatency == null) {
+                Histogram.Builder servletLatencyBuilder = Histogram.build()
+                        .name("servlet_request_seconds")
+                        .help("The time taken fulfilling servlet requests")
+                        .labelNames("context", "method");
 
-            if ((filterConfig.getInitParameter(BUCKET_CONFIG_PARAM) != null) && (!filterConfig.getInitParameter(BUCKET_CONFIG_PARAM).isEmpty())) {
-                String[] bucketParams = filterConfig.getInitParameter(BUCKET_CONFIG_PARAM).split(",");
-                double[] buckets = new double[bucketParams.length];
-                for (int i = 0; i < bucketParams.length; i++) {
-                    buckets[i] = Double.parseDouble(bucketParams[i].trim());
+                if ((filterConfig.getInitParameter(BUCKET_CONFIG_PARAM) != null) && (!filterConfig.getInitParameter(BUCKET_CONFIG_PARAM).isEmpty())) {
+                    String[] bucketParams = filterConfig.getInitParameter(BUCKET_CONFIG_PARAM).split(",");
+                    double[] buckets = new double[bucketParams.length];
+                    for (int i = 0; i < bucketParams.length; i++) {
+                        buckets[i] = Double.parseDouble(bucketParams[i].trim());
+                    }
+                    servletLatencyBuilder.buckets(buckets);
+                } else {
+                    servletLatencyBuilder.buckets(.01, .05, .1, .25, .5, 1, 2.5, 5, 10, 30);
                 }
-                servletLatencyBuilder.buckets(buckets);
-            } else {
-                servletLatencyBuilder.buckets(.01, .05, .1, .25, .5, 1, 2.5, 5, 10, 30);
+
+                servletLatency = servletLatencyBuilder.register();
+
+                Gauge.Builder servletConcurrentRequestBuilder = Gauge.build()
+                        .name("servlet_request_concurrent_total")
+                        .help("Number of concurrent requests for given context.")
+                        .labelNames("context");
+
+                servletConcurrentRequest = servletConcurrentRequestBuilder.register();
+
+                Gauge.Builder servletStatusCodesBuilder = Gauge.build()
+                        .name("servlet_response_status_total")
+                        .help("Number of requests for given context and status code.")
+                        .labelNames("context", "status");
+
+                servletStatusCodes = servletStatusCodesBuilder.register();
+
             }
-
-            servletLatency = servletLatencyBuilder.register();
-
-            Gauge.Builder servletConcurrentRequestBuilder = Gauge.build()
-                    .name("servlet_request_concurrent_total")
-                    .help("Number of concurrent requests for given context.")
-                    .labelNames("context");
-
-            servletConcurrentRequest = servletConcurrentRequestBuilder.register();
-
-            Gauge.Builder servletStatusCodesBuilder = Gauge.build()
-                    .name("servlet_response_status_total")
-                    .help("Number of requests for given context and status code.")
-                    .labelNames("context", "status");
-
-            servletStatusCodes = servletStatusCodesBuilder.register();
-
         }
     }
 
