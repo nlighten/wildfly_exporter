@@ -1,5 +1,7 @@
 # Prometheus Wildlfy Exporter
-A set of collectors that can be used to monitor Jboss Wildfly instances. This library has been tested with Wildfly 14.0.1.
+A set of collectors that can be used to monitor Jboss Wildfly instances. This library has been tested with Wildfly 17.0.1.
+
+> NOTE: Recent Wildfly versions now come with SmallRye Metrics, and implementation of Eclipse MicroProfile Metrics. SmallRye Metrics also supports prometheus as export format. You should seriously consider migrating! 
 
 
 ### Available metrics
